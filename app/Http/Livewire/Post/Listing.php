@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Post;
 
-use App\Traits\PostTrait;
-
 class Listing extends Base
 {
     public $search;
+    public $backNav = false;
+    public $componentTitle = 'Posts Listing';
 
     public function resetFilters(): void
     {
@@ -15,7 +15,7 @@ class Listing extends Base
 
     public function render()
     {
-        return view('livewire.post.listing')->extends('layouts.app');
+        return parent::doRender('post.listing');
     }
 
     public function getPostsProperty()

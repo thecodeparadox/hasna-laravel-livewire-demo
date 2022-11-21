@@ -4,11 +4,15 @@ namespace App\Http\Livewire\Post;
 
 use App\Traits\PostTrait;
 use App\Traits\UtilTrait;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Livewire\Component;
 
 class Base extends Component
 {
     use PostTrait, UtilTrait;
+
+    public $componentTitle = 'Post';
+    public $backNav = true;
 
     /**
      * Event listeners
@@ -25,6 +29,18 @@ class Base extends Component
     protected function rules(): array
     {
         return $this->getPostValidationRules();
+    }
+
+    /**
+     * Render
+     *
+     * @param mixed $view
+     * @return mixed
+     * @throws BindingResolutionException
+     */
+    public static function doRender($view)
+    {
+        return view($view)->extends('layouts.app');
     }
 
     /**

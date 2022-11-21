@@ -8,6 +8,7 @@ class View extends Base
     public $postStatuses;
     public $postId;
     public $showFullContent = true;
+    public $componentTitle = 'View Post';
 
     public function mount($id)
     {
@@ -18,6 +19,6 @@ class View extends Base
 
     public function render()
     {
-        return view('post.view')->extends('layouts.app');
+        return parent::doRender('post.view');
     }
 }

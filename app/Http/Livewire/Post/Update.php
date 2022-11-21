@@ -27,7 +27,7 @@ class Update extends Base
 
     public function render()
     {
-        return view('post.upsert')->extends('layouts.app');
+        return parent::doRender('post.upsert');
     }
 
     /**

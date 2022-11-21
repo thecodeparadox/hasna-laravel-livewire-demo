@@ -2,7 +2,7 @@
     <div class="row justify-content-between mt-3 mb-3">
         <div class="col-8 d-flex">
             <div class="flex-grow-1 hstack gap-3">
-                <h4>{{ 'Posts Listing' }}</h4>
+                <h4>{{ __($componentTitle) }}</h4>
                 <div wire:loading class="ml-3">
                     <div class="text-center">
                         <div class="spinner-border spinner-border-sm" role="status">
@@ -27,14 +27,14 @@
     </div>
     <div class="row">
         <div class="posts col-12">
-            @if ($posts->isNotEmpty())
+            @if ($this->posts->isNotEmpty())
                 <div class="posts-wrap">
-                    @foreach ($posts as $post)
+                    @foreach ($this->posts as $post)
                         @include('post.view')
                     @endforeach
                 </div>
                 <div aria-label="Page navigation">
-                    {{ $posts->links('pagination::custom-pagination') }}
+                    {{ $this->posts->links('pagination::custom-pagination') }}
                 </div>
             @else
                 <div class="alert alert-warning">{{ __('No Post found') }}</div>
