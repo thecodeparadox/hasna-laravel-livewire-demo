@@ -28,7 +28,7 @@ class PostFactory extends Factory
             'user_id' => User::count() ? User::inRandomOrder()->first()->id : User::factory(),
             'title' => $title,
             'slug' => $slug,
-            'content' => fake()->text(1000),
+            'content' => fake()->text(2000),
             'status' => fake()->randomElement(PostStatus::getEnumValues())
         ];
     }

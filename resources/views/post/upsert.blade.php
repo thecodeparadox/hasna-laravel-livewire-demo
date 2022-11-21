@@ -1,42 +1,54 @@
-<div class="card">
-    <div class="card-header text-end">
-        @include('post.partials.actions', ['edit' => false])
+<div>
+    <div class="d-flex mt-2 mb-3 ">
+        <div class="flex-grow-1">
+            <h4>{{ __($componentTitle) }}</h4>
+        </div>
+        <div class="text-end">
+            <a class="btn btn-info btn-sm" href="{{ route('posts') }}">
+                <i class="bi bi-arrow-left-circle"></i> {{ __('Back to Listing') }}
+            </a>
+        </div>
     </div>
-    <form class="card-body row content" wire:submit.prevent="savePost">
-        @csrf
-        <div class="mb-2">
-            <label for="title" class="form-label">{{ __('Title') }}</label>
-            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
-                aria-describedby="title" maxlength="255" value="{{ $title }}" required
-                wire:model.debounce.500ms="title" wire:keyup="updateSlug">
-            @error('title')
-                <div class="invalid-feedback">{{ __($message) }}</div>
-            @enderror
+    <div class="card">
+        <div class="card-header text-end">
+            @include('post.partials.actions', ['edit' => false])
         </div>
-        <div class="mt-2 mb-3 text-success">
-            <strong>Slug: </strong> {{ $slug }}
-            <input type="hidden" name="slug" value="{{ $slug }}" required maxlength="255">
-        </div>
-        <div class="mb-3">
-            <label for="content" class="form-label">{{ __('Content') }}</label>
-            <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content"
-                aria-describedby="content" required rows="10" wire:model.defer="content">{{ $content }}</textarea>
-            @error('content')
-                <div class="invalid-feedback">{{ __($message) }}</div>
-            @enderror
-        </div>
-        <div class="mb-3">
-            <label for="status" class="form-label">{{ __('Status') }}</label>
-            @foreach ($postStatuses as $index => $s)
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="status" id="status-{{ $index }}"
-                        value="{{ $s }}" @if ($s === $status) checked @endif
-                        wire:model="status">
-                    <label class="form-check-label" for="status-{{ $index }}">{{ ucfirst($s) }}</label>
-                </div>
-            @endforeach
-        </div>
+        <form class="card-body row content" wire:submit.prevent="savePost">
+            @csrf
+            <div class="mb-2">
+                <label for="title" class="form-label">{{ __('Title') }}</label>
+                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
+                    name="title" aria-describedby="title" maxlength="255" value="{{ $title }}" required
+                    wire:model.debounce.500ms="title" wire:keyup="updateSlug">
+                @error('title')
+                    <div class="invalid-feedback">{{ __($message) }}</div>
+                @enderror
+            </div>
+            <div class="mt-2 mb-3 text-success">
+                <strong>Slug: </strong> {{ $slug }}
+                <input type="hidden" name="slug" value="{{ $slug }}" required maxlength="255">
+            </div>
+            <div class="mb-3">
+                <label for="content" class="form-label">{{ __('Content') }}</label>
+                <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content"
+                    aria-describedby="content" required rows="10" wire:model.defer="content">{{ $content }}</textarea>
+                @error('content')
+                    <div class="invalid-feedback">{{ __($message) }}</div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="status" class="form-label">{{ __('Status') }}</label>
+                @foreach ($postStatuses as $index => $s)
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="status" id="status-{{ $index }}"
+                            value="{{ $s }}" @if ($s === $status) checked @endif
+                            wire:model="status">
+                        <label class="form-check-label" for="status-{{ $index }}">{{ ucfirst($s) }}</label>
+                    </div>
+                @endforeach
+            </div>
 
-        <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-    </form>
+            <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+        </form>
+    </div>
 </div>

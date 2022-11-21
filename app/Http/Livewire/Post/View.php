@@ -2,12 +2,22 @@
 
 namespace App\Http\Livewire\Post;
 
-use Livewire\Component;
-
-class View extends Component
+class View extends Base
 {
+    public $post;
+    public $postStatuses;
+    public $postId;
+    public $showFullContent = true;
+
+    public function mount($id)
+    {
+        $this->postId = $id;
+        $this->postStatuses = $this->getPostStatues();
+        $this->post = $this->getPostById($this->postId);
+    }
+
     public function render()
     {
-        return view('livewire.post.view');
+        return view('post.view')->extends('layouts.app');
     }
 }

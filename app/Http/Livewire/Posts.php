@@ -3,15 +3,12 @@
 namespace App\Http\Livewire;
 
 use App\Enums\PostStatus;
-use App\Models\Post;
 use App\Repositories\PostRepository;
 use App\Traits\PostTrait;
 use Carbon\Carbon;
-use Exception;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
@@ -165,7 +162,7 @@ class Posts extends Component
             'published_at' => PostStatus::is($this->status, PostStatus::PUBLISHED) ? Carbon::now() : null
         ];
 
-        $this->postRepo->upsert($data, $this->post->id ?? null);
+        $this->upsertPost($data, $this->post->id ?? null);
 
         return redirect()
             ->route('posts')
@@ -203,7 +200,7 @@ class Posts extends Component
      */
     public function purgePost($postId)
     {
-        $status = $this->postRepo->deleteById($postId);
+        $status = $this->postRepo->deletePostById($postId);
         if ($status) {
             return redirect()->route('posts')->with('success', __('Post deleted successfully'));
         }
@@ -225,7 +222,7 @@ class Posts extends Component
             return;
         }
 
-        $this->post = $this->postRepo->getById($this->postId);
+        $this->post = $this->postRepo->getPostById($this->postId);
         if (!$this->post) {
             return redirect()->route('posts')->with('error', __('Post Not Found'));
         }

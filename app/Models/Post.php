@@ -52,7 +52,7 @@ class Post extends Model
     public function shortContent(): Attribute
     {
         return Attribute::make(
-            get: fn ($value, $attrs) => Str::limit($attrs['content'], 150)
+            get: fn ($value, $attrs) => Str::limit($attrs['content'], 450)
         );
     }
 }

@@ -2,18 +2,15 @@
 
 namespace App\Http\Livewire\Post;
 
-use App\Repositories\PostRepository;
-use Livewire\Component;
+use App\Traits\PostTrait;
 
-class Listing extends Component
+class Listing extends Base
 {
-    protected PostRepository $postRepo;
-
     public $search;
 
-    public function __construct()
+    public function resetFilters(): void
     {
-        $this->postRepo = new PostRepository();
+        $this->resetExcept();
     }
 
     public function render()
@@ -23,6 +20,6 @@ class Listing extends Component
 
     public function getPostsProperty()
     {
-        return $this->postRepo->searchPosts($this->search);
+        return $this->searchPosts($this->search);
     }
 }
