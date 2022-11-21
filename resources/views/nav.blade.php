@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand active" aria-current="page" href="{{ route('posts') }}">
+        <a class="navbar-brand active" aria-current="page" href="{{ route('home') }}">
             <i class="bi bi-house-door-fill"></i>
         </a>
 

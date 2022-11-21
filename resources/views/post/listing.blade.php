@@ -19,7 +19,7 @@
         </div>
         <div class="col-4">
             <form class="position-relative"" role="search">
-                <input class="form-control me-2" type="text" name="search" wire:model.debounce.300ms="search"
+                <input class="form-control me-2" type="text" name="search" wire:model.debounce="search"
                     placeholder="Search By Title and Hit Return" aria-label="Search" value="{{ $search }}"
                     autocomplete="off">
             </form>

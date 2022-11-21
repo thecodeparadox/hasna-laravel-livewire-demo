@@ -29,7 +29,6 @@ class UserControllerTest extends TestCase
         $response = $this->json('POST', route('user.login'), ['email' => 'email@gmail.com', 'password' => 'password']);
 
         $response->assertStatus(302);
-        $response->assertRedirectToRoute('posts.listing');
     }
 
     public function test_login_should_be_failed_due_to_inactive_user()

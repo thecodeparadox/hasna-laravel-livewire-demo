@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('content')
     <section class="home">
@@ -9,7 +9,7 @@
                         {{ __('Welcome,' . Auth::user()->full_name . '!') }}
                     </h1>
                     <hr>
-                    <a href="{{ route('posts.listing') }}" class="btn btn-primary">
+                    <a href="{{ route('posts') }}" class="btn btn-primary">
                         {{ __('Go to Posts') }}
                     </a>
                 </div>

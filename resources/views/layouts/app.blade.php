@@ -56,13 +56,9 @@
     @livewireScripts
 
     <script type="text/javascript">
-        //
-        // The delete post mechanism.
-        // Here, same button is being use for both Livewire and Laravel listing.
-        // Beside that, we've confirmation modal which placed in
-        // app main layout in order to ease of access from both places
-        //
-        //
+        /**
+         * Post Deletion Mechanism
+         */
         const modalEl = document.getElementById('staticBackdrop');
         const modalInst = new bootstrap.Modal('#staticBackdrop', {
             keyboard: false

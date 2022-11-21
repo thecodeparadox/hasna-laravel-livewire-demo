@@ -1,4 +1,10 @@
 <main class="container">
+    @if (session('error') || session('danger'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <span>{{ __(session('error') ?? session('danger')) }}</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     @if ($opMode !== 'listing')
         <div class="d-flex mt-2 mb-3 ">
             <div class="flex-grow-1">

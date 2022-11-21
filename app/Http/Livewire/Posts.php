@@ -11,6 +11,7 @@ use Exception;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
@@ -164,7 +165,7 @@ class Posts extends Component
             'published_at' => PostStatus::is($this->status, PostStatus::PUBLISHED) ? Carbon::now() : null
         ];
 
-        $post = $this->postRepo->upsert($data, $this->post->id ?? null);
+        $this->postRepo->upsert($data, $this->post->id ?? null);
 
         return redirect()
             ->route('posts')
@@ -172,7 +173,7 @@ class Posts extends Component
     }
 
     /**
-     * Perform Delete Post
+     * Prepare Post Deletion
      *
      * @param mixed $postId
      * @return RedirectResponse
@@ -183,14 +184,30 @@ class Posts extends Component
      */
     public function performDelete($postId)
     {
+        if (!$postId) {
+            return false;
+        }
         $this->postId = $postId;
         $this->emit('askPermission', $this->postId);
     }
 
+    /**
+     * Perform post delete and redirect to listing
+     *
+     * @param mixed $postId
+     * @return RedirectResponse
+     * @throws BindingResolutionException
+     * @throws RouteNotFoundException
+     * @throws NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface
+     */
     public function purgePost($postId)
     {
-        $this->postRepo->deleteById($this->postId);
-        return redirect()->route('posts')->with('success', __('Post deleted successfully'));
+        $status = $this->postRepo->deleteById($postId);
+        if ($status) {
+            return redirect()->route('posts')->with('success', __('Post deleted successfully'));
+        }
+        return back()->with('error', __('Deletion Failed'));
     }
 
     /**
