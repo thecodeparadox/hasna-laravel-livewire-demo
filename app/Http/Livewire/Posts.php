@@ -38,6 +38,7 @@ class Posts extends Component
     public $opMode = 'listing';
     public $componentTitle = 'Posts Listing';
     public $postStatuses;
+    public $backNav = true;
 
     public function __construct()
     {
@@ -73,7 +74,7 @@ class Posts extends Component
         $this->postId = $id;
         $this->opMode = 'listing';
         $routeName = request()->route()->getName();
-
+        $this->backNav = !$this->opMode;
         switch ($routeName) {
             case 'post.create':
                 $this->componentTitle = 'Create Post';

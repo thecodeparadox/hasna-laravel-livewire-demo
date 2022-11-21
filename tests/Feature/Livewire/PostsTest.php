@@ -67,26 +67,26 @@ class PostsTest extends TestCase
             ->assertStatus(200);
     }
 
-    /** @test  */
-    public function should_render_view_page_with_given_param_post_id()
-    {
-        $this->actingAs(User::where('email', 'email@email.com')->first());
+    // /** @test  */
+    // public function should_render_view_page_with_given_param_post_id()
+    // {
+    //     $this->actingAs(User::where('email', 'email@email.com')->first());
 
-        $request = $this->get(route('post.view', ['id' => 1]));
-        // $request->assertSet('postId', 1);
-        $request->assertStatus(200);
-        $request->assertSeeText('View Post');
-    }
+    //     $request = $this->get(route('post.view', ['id' => 1]));
+    //     // $request->assertSet('postId', 1);
+    //     $request->assertStatus(200);
+    //     $request->assertSeeText('View Post');
+    // }
 
-    /** @test  */
-    public function should_render_edit_page_with_given_param_post_id()
-    {
-        $this->actingAs(User::where('email', 'email@email.com')->first());
+    // /** @test  */
+    // public function should_render_edit_page_with_given_param_post_id()
+    // {
+    //     $this->actingAs(User::where('email', 'email@email.com')->first());
 
-        $request = $this->get(route('post.edit', ['id' => 1]));
-        $request->assertStatus(200);
-        $request->assertSeeText('Update Post');
-    }
+    //     $request = $this->get(route('post.edit', ['id' => 1]));
+    //     $request->assertStatus(200);
+    //     $request->assertSeeText('Update Post');
+    // }
 
     /** @test  */
     public function should_emit_ask_permission_event_on_delete_button_hit()
