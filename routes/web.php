@@ -34,19 +34,25 @@ Route::prefix('user')->group(function () {
     Route::post('/store', [UserController::class, 'store'])->name('user.store');
 });
 
+/**
+ * Single Component Implementation
+ */
+// Route::prefix('posts')->group(function () {
+//     Route::get('/', Posts::class)->name('posts');
+//     Route::get('create', Posts::class)->name('post.create');
+//     Route::get('view/{id}', Posts::class)->name('post.view');
+//     Route::get('edit/{id}', Posts::class)->name('post.edit');
+// });
+
+/**
+ * Multi Component Implementation
+ */
 Route::prefix('posts')->group(function () {
-    Route::get('/', Posts::class)->name('posts');
-    Route::get('create', Posts::class)->name('post.create');
-    Route::get('view/{id}', Posts::class)->name('post.view');
-    Route::get('edit/{id}', Posts::class)->name('post.edit');
+    Route::get('/', PostListing::class)->name('posts');
+    Route::get('create', PostCreate::class)->name('post.create');
+    Route::get('edit/{id}', PostUpdate::class)->name('post.edit');
+    Route::get('view/{id}', PostView::class)->name('post.view');
 });
 
 // Route::middleware(['auth:sanctum', 'web.auth'])->group(function () {
-// });
-
-// Route::prefix('posts')->group(function () {
-//     Route::get('/', PostListing::class)->name('posts');
-//     Route::get('create', PostCreate::class)->name('post.create');
-//     Route::get('edit/{id}', PostUpdate::class)->name('post.edit');
-//     Route::get('view/{id}', PostView::class)->name('post.view');
 // });
