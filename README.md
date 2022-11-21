@@ -6,7 +6,7 @@
 
 2.  Multi Components `app/Http/Livewire/Post/{Create,Update,Listing,View}.php`
 
-> In `web.php` route definition this implementation is active now
+> In `web.php` route definition, Multi-component implementation is active now.
 >
 > Two check Single Component implementation, please just toggle comments.
 
@@ -14,9 +14,7 @@
 
 ## Authentication
 
-For login please use `email@email.com / password` as credentials. Seeders already created the test user.
-
-> ### I've added a `Makefile` for easy project run. Hope that helps!! :-)
+For login please use `email@email.com / password` as credentials. Seeders already create the test user when run.
 
 ---
 
