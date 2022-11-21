@@ -45,3 +45,8 @@ For login please use `email@email.com / password` as credentials. Seeders alread
 
 <a href="demo-screenshots/hasna-laravel-livewire-demo-upsert-page-with-validation.png" target="_blank">
 <img src="demo-screenshots/hasna-laravel-livewire-demo-upsert-page-with-validation.png" alt="Login Page" width="500px" height="350" style="margin: 0 10px" /></a>
+
+## Delete action (modal based)
+
+<a href="demo-screenshots/hasna-laravel-livewire-demo-delete-consent.png" target="_blank">
+<img src="demo-screenshots/hasna-laravel-livewire-demo-delete-consent.png" alt="Login Page" width="500px" height="350" style="margin: 0 10px" /></a>
